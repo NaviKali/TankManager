@@ -22,7 +22,7 @@ class Login extends BaseController
      * @return array
      * @date 2024-08-10
      */
-    public function RegistrationAccount(Request $request):array
+    public function RegistrationAccount(Request $request): array
     {
         BathVerParams("POST", VerificationInclude('Login')["registration"]);
         $params = $request->postparam();
@@ -31,14 +31,20 @@ class Login extends BaseController
     }
     /**
      * 账号密码登录
+     * @access public
+     * @author liulei
+     * @api Login/AccountLogin
+     * @param Request $request look down
+     * @return mixed
+     * @date 2024-08-10
      */
-    public function AccountLogin(Request $request)
+    public function AccountLogin(Request $request):mixed
     {
-        Func::SingleVerCallFunction("LOGIN",__FUNCTION__,function(){
-        },[
+      return Func::SingleVerCallFunction("LOGIN", __FUNCTION__, function () {
+        }, [
             'login_user',
             'login_password',
-           true
+            true
         ]);
     }
 

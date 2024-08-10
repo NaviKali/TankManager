@@ -16,7 +16,11 @@ return [
      * TODO快速引入本地文件。
      * !请采取用符号的形式来定义路径。
      */
-    "StaticFileUrl" => [],
+    "StaticFileUrl" => [
+        "#css#"=>"http://localhost:8080/public/static/css/",
+        "#js#"=>"http://localhost:8080/public/static/js/",
+        "#ifrname#"=>"http://localhost:8080/views/",
+    ],
     /**
      * 自定义标签
      * TODO创建属于自己的标签

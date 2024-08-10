@@ -1,6 +1,8 @@
 <?php
 namespace app\middleware;
 
+use tank\Func\Func;
+
 class tokenmiddleware
 {
         /**
@@ -8,6 +10,7 @@ class tokenmiddleware
          */
         public static function Handle()
         {
-                \tank\MG\Operate::VerToken([]);
+                if (str_contains("public", Func::getUrl()))
+                        \tank\MG\Operate::VerToken([]);
         }
 }

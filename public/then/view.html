@@ -3,21 +3,26 @@
         <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>[DOCUMENT]</title>
+                <title>登录页</title>
                 
         </head>
         <body>
-<div id="View">
-    <h2>
-        这是一个手机端
-    </h2>
-</div>
-<script src='http://localhost:8080/public/static/js/tank.js'></script>
-<script>
-    document.body.onload = function () {
-        MediaConfigView("<?php echo $TK["view"]["width"] ?>","<?php echo $TK["view"]["to"] ?>");
+<iframe src="http://localhost:8080/views/loading.html" frameborder="0"></iframe>
+<h1>asdasd</h1>
+
+
+<link rel="stylesheet" href="http://localhost:8080/public/static/css/bootstrap.min.css">
+<style>
+    body{
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
     }
-</script>
+    iframe{
+        width: 100%;
+        height: 100%;
+    }
+</style>
 </body>
 
         </html>
