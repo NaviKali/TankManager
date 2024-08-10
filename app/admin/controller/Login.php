@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use tank\BaseController;
+use tank\Func\Func;
 use tank\Request\Request;
 use app\model\Login as ModelLogin;
 use app\model\User as ModelUser;
@@ -14,6 +15,8 @@ class Login extends BaseController
     /**
      * 注册登录账号
      * @author liulei
+     * @access public
+     * @api Login/RegistrationAccount
      * @see @param app\verification\Login.php["registration"]
      * @param Request $request
      * @return array
@@ -25,6 +28,18 @@ class Login extends BaseController
         $params = $request->postparam();
         (new ModelLogin())->Modelcreate([$params['login_user'], $params['login_password']]);
         return $this->throwSuccess("添加成功！");
+    }
+    /**
+     * 账号密码登录
+     */
+    public function AccountLogin(Request $request)
+    {
+        Func::SingleVerCallFunction("LOGIN",__FUNCTION__,function(){
+        },[
+            'login_user',
+            'login_password',
+           true
+        ]);
     }
 
 

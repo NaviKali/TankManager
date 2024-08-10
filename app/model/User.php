@@ -4,6 +4,10 @@
  */
 namespace app\model;
 
+use tank\Admin\LocalhostDictionary;
+use tank\Request\Request;
+use function tank\Error;
+
 class User extends \tank\MD\MD
 {
 
@@ -17,6 +21,7 @@ class User extends \tank\MD\MD
         ];
         /**写入字段 */
         public static $writefield = [
+                'login_guid' => "用户登录Guid",
                 'user_name' => "用户姓名",
                 'user_sex' => "用户性别",
                 'user_phone' => "用户手机号",
@@ -43,6 +48,11 @@ class User extends \tank\MD\MD
          */
         public static function onBeforeCreate()
         {
+                $params = Request::postparam();
+                if ((new User())->where(["login_guid" => $params["login_guid"]])->select()) {
+                        Error("当前用户表格填写已存在！");
+                        die;
+                }
         }
         /**
          * 添加后

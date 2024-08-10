@@ -5,7 +5,7 @@
 namespace app\model;
 
 use tank\Request\Request;
-use tank\Error\error;
+use function tank\Error;
 
 class Login extends \tank\MD\MD
 {
@@ -47,8 +47,10 @@ class Login extends \tank\MD\MD
         public static function onBeforeCreate()
         {
                 $params = Request::postparam();
-                if ((new Login())->where(['login_user' => $params["login_user"], 'login_password' => $params["login_password"]])->select())
-                        error::create("已存在该账号！");
+                if ((new Login())->where(['login_user' => $params["login_user"], 'login_password' => $params["login_password"]])->select()) {
+                        Error("已存在该账号！");
+                        die;
+                }
         }
         /**
          * 添加后

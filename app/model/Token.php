@@ -28,7 +28,7 @@ class Token extends \tank\MD\MD
         /**开启软删除 */
         public static $OpenSoftDelete = true;
         /**软删除字段 */
-        public static $SoftDeleteField = null;
+        public static $SoftDeleteField = 'token_delete_time';
         /**开启其余字段写入 */
         public static $OpenOtherWriteField = true;
         /**其余字段写入 */

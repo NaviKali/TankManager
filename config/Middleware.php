@@ -19,7 +19,7 @@ use tank\Request\Request;
 $userMiddleware = [
         // "\app\middleware\middleware",
         // "\app\middleware\loginmiddleware",
-        // "\app\middleware\\tokenmiddleware",
+        "\app\middleware\\tokenmiddleware",
         // "\app\middleware\\routerunreal",
         // "\app\middleware\phpversionmiddleware",
         // "\app\middleware\localareanetworkrestrictionmiddleware",

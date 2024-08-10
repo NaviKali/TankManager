@@ -5,6 +5,7 @@ use tank\Tool\Tool;
 use tank\MG\MG;
 use tank\App\App;
 use function tank\{Success};
+use tank\Admin\LocalhostDictionary;
 
 class BaseController
 {
@@ -29,9 +30,19 @@ class BaseController
          * @access public
          * @return mixed
          */
-        public function getNewClass():mixed
+        public function getNewClass(): mixed
         {
                 return (new $this->FastCurrentNewClass);
+        }
+        /**
+         * 使用字典
+         * @access public
+         * @param string $key key键 必填
+         * @return mixed 返回字典值
+         */
+        public function useDictionary(string $key): mixed
+        {
+                return (new LocalhostDictionary)->getDesignationValue($key);
         }
         /**
          * 密码验证场景规则
