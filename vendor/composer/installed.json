@@ -1,0 +1,43 @@
+{
+    "packages": [
+        {
+            "name": "tankphp/tank",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NaviKali/Tank.git",
+                "reference": "cb86408cec291ebe325e17efb26281e8bc302752"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NaviKali/Tank/zipball/cb86408cec291ebe325e17efb26281e8bc302752",
+                "reference": "cb86408cec291ebe325e17efb26281e8bc302752",
+                "shasum": ""
+            },
+            "time": "2024-08-09T03:06:57+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Tankphp\\Tank\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "tankphp"
+                }
+            ],
+            "description": "Tank框架是一个由PHP后端语言操作MongoDB数据库的框架。",
+            "support": {
+                "issues": "https://github.com/NaviKali/Tank/issues",
+                "source": "https://github.com/NaviKali/Tank/tree/main"
+            },
+            "install-path": "../tankphp/tank"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
