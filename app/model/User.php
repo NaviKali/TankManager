@@ -1,40 +1,36 @@
 <?php
 /**
- * Token
+ * 模型层模拟
  */
 namespace app\model;
 
-class Token extends \tank\MD\MD
+class User extends \tank\MD\MD
 {
+
         /**Key绑定 */
-        public static $Key = "token_id";
+        public static $Key = "user_id";
         /**Guid绑定 */
-        public static $Guid = ["token_guid", "token_value"];
+        public static $Guid = ["user_guid", "user_name"];
         /**显示字段 */
         public static $field = [
-                'token_guid' => self::SHOW,
-                'by_guid'=>self::SHOW,
-                'token_value' => self::SHOW,
-                'token_create_time' => self::SHOW,
-                'token_update_time' => self::SHOW,
+                'user_name' => self::SHOW,
         ];
         /**写入字段 */
         public static $writefield = [
-                'token_value' => "token值",
-                'by_guid'=>"使用者Guid",
-                'token_type'=>"token类型",
-                'token_export_time'=>"token过期时间",
+                'user_name' => "用户姓名",
+                'user_sex' => "用户性别",
+                'user_phone' => "用户手机号",
         ];
         /**开启软删除 */
         public static $OpenSoftDelete = true;
         /**软删除字段 */
-        public static $SoftDeleteField = null;
+        public static $SoftDeleteField = 'user_delete_time';
         /**开启其余字段写入 */
         public static $OpenOtherWriteField = true;
         /**其余字段写入 */
         public static $OtherWriteField = [
-                'create' => "token_create_time",
-                'update' => "token_update_time",
+                'create' => "user_create_time",
+                'update' => "user_update_time",
         ];
         /**开启业务姓名字段写入 */
         public static $UserNameWriteField = true;
@@ -47,7 +43,6 @@ class Token extends \tank\MD\MD
          */
         public static function onBeforeCreate()
         {
-                // (new \app\model\Token)->select() ? die : null;
         }
         /**
          * 添加后
@@ -73,12 +68,27 @@ class Token extends \tank\MD\MD
          */
         public static function onBeforeDelete()
         {
-                (new \app\model\Token)->select() ? null : die;
+
         }
         /**
          * 删除后
          */
         public static function onAfterDelete()
+        {
+
+        }
+        /**
+         * 查询前
+         */
+
+        public static function onBeforeSelect()
+        {
+
+        }
+        /**
+         * 查询后
+         */
+        public static function onAfterSelect()
         {
 
         }

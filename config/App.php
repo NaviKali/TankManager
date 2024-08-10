@@ -15,7 +15,7 @@ return [
      * 是否开启App场景化
      * @var bool
      */
-    "IsStartApp"=>true,
+    "IsStartApp"=>false,
     /**
      * 是否开启严格验证[如果Base解码异常，抛出错误]
      * @var bool
@@ -31,7 +31,7 @@ return [
      * Base64解码参数 | GET or POST
      * @var string
      */
-    "AppParamsType"=>"GET",
+    "AppParamsType"=>"POST",
     /**
      * 不可调用类
      * @var array

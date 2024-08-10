@@ -6,5 +6,14 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'tank\\' => array($baseDir . '/tank'),
+    'router\\' => array($baseDir . '/router'),
+    'public\\' => array($baseDir . '/public'),
+    'config\\' => array($baseDir . '/config'),
+    'app\\' => array($baseDir . '/app'),
     'Tankphp\\Tank\\' => array($vendorDir . '/tankphp/tank/src'),
+    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
+    'Predis\\' => array($vendorDir . '/predis/predis/src'),
+    'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
+    'Jean85\\' => array($vendorDir . '/jean85/pretty-package-versions/src'),
 );

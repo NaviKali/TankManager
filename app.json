@@ -1,10 +1,11 @@
 {
-  "ROOT": "",
-  "UPLOADURL": "",
+  "ROOT": "/",
+  "UPLOADURL": "/",
   "COOKIE": {
     "UUID": {
       "NAME": "UUID",
       "TIME": 100000
     }
-  }
+  },
+  "Password-free-login":["LIULEI"]  
 }

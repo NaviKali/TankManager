@@ -1,40 +1,39 @@
 <?php
 /**
- * Token
+ * 登录
  */
 namespace app\model;
 
-class Token extends \tank\MD\MD
+use tank\Request\Request;
+use tank\Error\error;
+
+class Login extends \tank\MD\MD
 {
+
         /**Key绑定 */
-        public static $Key = "token_id";
+        public static $Key = "login_id";
         /**Guid绑定 */
-        public static $Guid = ["token_guid", "token_value"];
+        public static $Guid = ["login_guid", "login_password"];
         /**显示字段 */
         public static $field = [
-                'token_guid' => self::SHOW,
-                'by_guid'=>self::SHOW,
-                'token_value' => self::SHOW,
-                'token_create_time' => self::SHOW,
-                'token_update_time' => self::SHOW,
+                'login_user' => self::SHOW,
+                'login_password' => self::SHOW,
         ];
         /**写入字段 */
         public static $writefield = [
-                'token_value' => "token值",
-                'by_guid'=>"使用者Guid",
-                'token_type'=>"token类型",
-                'token_export_time'=>"token过期时间",
+                'login_user' => "账号",
+                'login_password' => "密码",
         ];
         /**开启软删除 */
         public static $OpenSoftDelete = true;
         /**软删除字段 */
-        public static $SoftDeleteField = null;
+        public static $SoftDeleteField = 'login_delete_time';
         /**开启其余字段写入 */
         public static $OpenOtherWriteField = true;
         /**其余字段写入 */
         public static $OtherWriteField = [
-                'create' => "token_create_time",
-                'update' => "token_update_time",
+                'create' => "login_create_time",
+                'update' => "login_update_time",
         ];
         /**开启业务姓名字段写入 */
         public static $UserNameWriteField = true;
@@ -47,7 +46,9 @@ class Token extends \tank\MD\MD
          */
         public static function onBeforeCreate()
         {
-                // (new \app\model\Token)->select() ? die : null;
+                $params = Request::postparam();
+                if ((new Login())->where(['login_user' => $params["login_user"], 'login_password' => $params["login_password"]])->select())
+                        error::create("已存在该账号！");
         }
         /**
          * 添加后
@@ -73,12 +74,27 @@ class Token extends \tank\MD\MD
          */
         public static function onBeforeDelete()
         {
-                (new \app\model\Token)->select() ? null : die;
+
         }
         /**
          * 删除后
          */
         public static function onAfterDelete()
+        {
+
+        }
+        /**
+         * 查询前
+         */
+
+        public static function onBeforeSelect()
+        {
+
+        }
+        /**
+         * 查询后
+         */
+        public static function onAfterSelect()
         {
 
         }
