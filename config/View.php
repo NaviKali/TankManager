@@ -17,9 +17,11 @@ return [
      * !请采取用符号的形式来定义路径。
      */
     "StaticFileUrl" => [
-        "#css#"=>"http://localhost:8080/public/static/css/",
-        "#js#"=>"http://localhost:8080/public/static/js/",
-        "#ifrname#"=>"http://localhost:8080/views/",
+        "#css#" => "http://localhost:8080/public/static/css/",
+        "#js#" => "http://localhost:8080/public/static/js/",
+        "#iframe#" => "http://localhost:8080/views/",
+        "#request#" => "http://localhost:8080/public/app/admin.php/",
+        "#service#" => "http://localhost:8080/public/static/js/service/",
     ],
     /**
      * 自定义标签

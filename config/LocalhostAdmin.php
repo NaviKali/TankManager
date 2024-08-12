@@ -20,5 +20,5 @@ return [
     /**
      * 本地管理员数量最大长度
      */
-    "LocalhostAdminMaxLimit" => 2,
+    "LocalhostAdminMaxLimit" => 8,
 ];

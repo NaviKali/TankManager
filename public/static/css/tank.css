@@ -4,4 +4,20 @@ iframe{
     position: absolute;
     z-index: 10000;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
+.tank-alert{
+    margin: auto;
+    padding: 15px;
+    position: absolute;
+    left: -300px;
+    top: 15px;
+    transition: all 1s;
+
+}
+p{
+    margin-bottom: unset;
+}
+

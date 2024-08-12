@@ -1,24 +1,32 @@
 <!-- 加载按钮 -->
- <div class="LoadingBlock">
+<div class="LoadingBlock">
     <div class="spinner-border text-info"></div>
- </div>
+    <p id="loadingText">加载中</p>
+</div>
 <!-- echarts图标加载 -->
 <div id="loadingView">
 </div>
-<link rel="stylesheet" href="../public/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../public/static/css/bootstrap.min.css">
 <style>
-    .LoadingBlock{
+    .LoadingBlock {
         display: flex;
         align-items: center;
         align-content: center;
-        justify-content: center;
+        justify-content: space-around;
         width: 100px;
         height: 30px;
         position: absolute;
-        right: 0;
+        right: 50px;
         bottom: 20px;
         z-index: 5000;
+
     }
+
+    p {
+        margin-top: unset;
+        margin-bottom: unset;
+    }
+
     #loadingView {
         width: 100%;
         height: 100%;
@@ -31,7 +39,7 @@
         height: 100%;
     }
 </style>
-<script src="../public/static/js/echarts-min.js"></script>
+<script src="../../public/static/js/echarts-min.js"></script>
 <script type="text/javascript">
     var chartDom = document.getElementById('loadingView');
     var myChart = echarts.init(chartDom);
