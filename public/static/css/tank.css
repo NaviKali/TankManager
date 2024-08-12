@@ -1,4 +1,15 @@
-iframe{
+@font-face {
+    font-family: tankfont;
+    src: url("../font/字魂无外润黑体.ttf");
+}
+:root {
+    --theme-color: #ed6950;
+    --theme-background: #db5442;
+    --theme-button-color: #4aaeaf;
+    --theme-font: tankfont;
+}
+
+iframe {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -8,16 +19,21 @@ iframe{
     right: 0;
     bottom: 0;
 }
-.tank-alert{
+.tank-alert {
     margin: auto;
     padding: 15px;
     position: absolute;
     left: -300px;
     top: 15px;
     transition: all 1s;
-
 }
-p{
+p {
     margin-bottom: unset;
+    font-family: var(--theme-font);
 }
-
+span {
+    font-family: var(--theme-font);
+}
+button {
+    font-family: var(--theme-font);
+}

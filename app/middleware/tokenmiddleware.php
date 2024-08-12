@@ -10,7 +10,10 @@ class tokenmiddleware
          */
         public static function Handle()
         {
-                if (str_contains("public", Func::getUrl()))
-                        \tank\MG\Operate::VerToken([]);
+                if (str_contains(Func::getUrl(), "public"))
+                        \tank\MG\Operate::VerToken([
+                                'AccountLogin',
+                                'ConfidentialityLogin',
+                        ]);
         }
 }

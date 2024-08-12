@@ -1,3 +1,12 @@
+const verRequestSuccess = 200;
+const verRequestWarning = 404;
+const verTokenError = 502;
+
+
+
+
+
+
 /**
  * 媒体查询适配
  * @param width 宽度 必填
@@ -39,7 +48,7 @@ function CreateLoadingHTML(iframeSrc) {
  * @param res 请求后的数据 必填
  */
 function isRequestSuccess(res) {
-    return res.code == 200 ? true : false;
+    return res.code == verRequestSuccess ? true : false;
 }
 
 
@@ -100,6 +109,7 @@ function DefineRequest(type, url, param, response) {
     new Promise((res, rej) => {
         if (type == "GET" || type == "get") {
             $.get(url, param, function (data, status) {
+                VerTokenErrorHandle(data)
                 if (isRequestSuccess(data)) {
                     CreateSuccessAlert(data.msg)
                     return res(response(data, status));
@@ -119,15 +129,29 @@ function DefineRequest(type, url, param, response) {
                 type: type,
                 data: JSON.stringify(param),
                 success: function (data) {
+                    VerTokenErrorHandle(data)
                     if (isRequestSuccess(data)) {
                         CreateSuccessAlert(data.msg)
-                        return res(response(data, status));
+                        return res(response(data));
                     } else {
                         CreateDangerAlert(data.msg)
-                        return res(response(data, status));
+                        return res(response(data));
                     }
                 }
             })
         }
     })
+}
+
+
+/**
+ * Token验证失败处理
+ * @param res 请求返回数据 必填
+ */
+function VerTokenErrorHandle(res) {
+    if (res.code == verTokenError) {
+        sessionStorage.clear()
+        localStorage.clear();
+        To("LoginPage");
+    }
 }

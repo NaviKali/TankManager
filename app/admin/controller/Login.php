@@ -9,6 +9,9 @@ use app\model\Login as ModelLogin;
 use app\model\User as ModelUser;
 use function tank\BathVerParams;
 use function tank\VerificationInclude;
+use tank\Admin\LocalhostAdmin;
+
+
 
 class Login extends BaseController
 {
@@ -30,6 +33,25 @@ class Login extends BaseController
         return $this->throwSuccess("添加成功！");
     }
     /**
+     * 免密登录
+     * @author liulei
+     * @access public
+     * @api Login/ConfidentialityLogin
+     * @see @param app\verification\Login.php["confidentiality"]
+     * @param Request $request
+     * @return mixed
+     * @date 2024-08-12
+     */
+    public function ConfidentialityLogin(Request $request): mixed
+    {
+        BathVerParams("POST", VerificationInclude('Login')["confidentiality"]);
+        $params = $request->postparam();
+        if ((new LocalhostAdmin)->LocalhostAdminLogin($params["user"], "123456789"))
+            return $this->throwSuccess("登录成功！");
+        else
+            return $this->throwWarning("登录失败！");
+    }
+    /**
      * 账号密码登录
      * @access public
      * @author liulei
@@ -38,9 +60,9 @@ class Login extends BaseController
      * @return mixed
      * @date 2024-08-10
      */
-    public function AccountLogin(Request $request):mixed
+    public function AccountLogin(Request $request): mixed
     {
-      return Func::SingleVerCallFunction("LOGIN", __FUNCTION__, function () {
+        return Func::SingleVerCallFunction("LOGIN", __FUNCTION__, function () {
         }, [
             'login_user',
             'login_password',
