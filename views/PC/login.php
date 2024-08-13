@@ -59,11 +59,11 @@
             id="ClickLoginDialog">
             免密登录
         </button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginDialog"
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RegistrationLoginDialog"
             id="ClickLoginDialog">
             注册
         </button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#LoginDialog"
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#BackstageItem"
             id="ClickLoginDialog">
             后台详情
         </button>
@@ -116,6 +116,79 @@
         </div>
     </div>
 </div>
+<!-- 注册 -->
+<div class="modal fade" id="RegistrationLoginDialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">注册账号</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label for="reg_user" class="form-label">注册账号</label>
+                    <input type="reg_user" class="form-control" id="reg_user" placeholder="请输入注册账号" name="reg_user">
+                </div>
+                <div class="mb-3">
+                    <label for="reg_password" class="form-label">注册密码</label>
+                    <input type="reg_password" class="form-control" id="reg_password" placeholder="请输入注册密码"
+                        name="reg_password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#UserWriteTable"
+                    onclick="Registration()">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 用户填写表格 -->
+<!-- <div class="modal fade" id="UserWriteTable">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">用户填写表格</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label for="user_name" class="form-label">用户姓名</label>
+                    <input type="user_name" class="form-control" id="user_name" placeholder="请输入用户姓名" name="user_name">
+                </div>
+                <div class="mb-3">
+                    <label for="user_phone" class="form-label">用户手机号</label>
+                    <input type="user_phone" class="form-control" id="user_phone" placeholder="请输入用户手机号"
+                        name="user_phone">
+                </div>
+                <select class="form-select" id="user_sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="Over()">完成</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- 后台详情 -->
+<div class="modal fade" id="BackstageItem">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">后台详情</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <li class="list-group-item">后台管理系统包含电脑和手机端的媒体查询UI不一致的作用。</li>
+                    <li class="list-group-item">后台统一字体。</li>
+                    <li class="list-group-item">后台颜色根据主题来定义。</li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script src="#js#bootstrap.bundle.min.js"></script>
@@ -123,6 +196,9 @@
 <script src="#js#tank.js"></script>
 <script src="#service#Login.js"></script>
 <script>
+    document.body.onload = function () {
+        MediaConfigView("$-TK['view']['width']-$", "$-TK['view']['to']-$");
+    }
 
     /**
      * 登录
@@ -135,6 +211,12 @@
      */
     function FreeLoginClick() {
         IFreePasswordLogin("#request#Login/ConfidentialityLogin", { user: freepassword_user.value });
+    }
+    /**
+    * 注册账号并且完成填写表格
+    */
+    function Registration() {
+        IRegistrationAccount("#request#Login/RegistrationAccount", { login_user: document.getElementById("reg_user").value, login_password: document.getElementById("reg_password").value })
     }
 </script>
 [/Start]

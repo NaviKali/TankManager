@@ -14,8 +14,8 @@ const verTokenError = 502;
  */
 function MediaConfigView(width, url) {
     if (window.innerWidth < width) {
-        let to = "./index?mediaType=" + url;
-        location.href = to
+        let to = "?mediaType=" + url;
+        location.href = window.location.href + to
     }
 }
 /**
@@ -112,9 +112,15 @@ function DefineRequest(type, url, param, response) {
                 VerTokenErrorHandle(data)
                 if (isRequestSuccess(data)) {
                     CreateSuccessAlert(data.msg)
+                    if (location.href.includes("mediaType")) {
+                        mui.toast(data.msg);
+                    }
                     return res(response(data, status));
                 } else {
                     CreateDangerAlert(data, msg)
+                    if (location.href.includes("mediaType")) {
+                        mui.toast(data.msg);
+                    }
                     return response(data, status);
                 }
             });
@@ -132,9 +138,15 @@ function DefineRequest(type, url, param, response) {
                     VerTokenErrorHandle(data)
                     if (isRequestSuccess(data)) {
                         CreateSuccessAlert(data.msg)
+                        if (location.href.includes("mediaType")) {
+                            mui.toast(data.msg);
+                        }
                         return res(response(data));
                     } else {
                         CreateDangerAlert(data.msg)
+                        if (location.href.includes("mediaType")) {
+                            mui.toast(data.msg);
+                        }
                         return res(response(data));
                     }
                 }

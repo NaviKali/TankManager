@@ -1,5 +1,5 @@
 # TankManager
-#### TankManger是由Tank框架+Bootstrap+jqueryModile实现的视图层式的PC端、手机端的后台管理系统。
+#### TankManger是由Tank框架+Bootstrap+mui实现的视图层式的PC端、手机端的后台管理系统。
 ***
 ## 配置事项
 * 1.请先安装MongoDB数据库。

@@ -14,6 +14,7 @@ class tokenmiddleware
                         \tank\MG\Operate::VerToken([
                                 'AccountLogin',
                                 'ConfidentialityLogin',
+                                'RegistrationAccount',
                         ]);
         }
 }

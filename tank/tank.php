@@ -12,6 +12,16 @@ use tank\View\View;
 use tank\Request\Request;
 
 /**
+ * 获取视图层媒体查询宽度
+ */
+if (!function_exists("getMediaWidth")) {
+        function getMediaWidth()
+        {
+                $appjson = (array) getAPPJSON();
+                return $appjson["MediaWidth"];
+        }
+}
+/**
  * 获取当前路径执行函数
  */
 if (!function_exists('getCurrentFunctionName')) {
@@ -85,7 +95,7 @@ if (!function_exists("Weclome")) {
         function Weclome()
         {
                 header("Content-Type:text/html");
-                include(getRoot() . '/public/then/weclome.html');
+                include (getRoot() . '/public/then/weclome.html');
         }
 }
 /**
@@ -272,7 +282,7 @@ if (!function_exists("VerificationInclude")) {
          */
         function VerificationInclude(string $PHPName)
         {
-                return require(getRoot() . "app/verification/$PHPName.php");
+                return require (getRoot() . "app/verification/$PHPName.php");
         }
 }
 /**

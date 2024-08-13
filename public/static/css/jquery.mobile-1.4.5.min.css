@@ -880,7 +880,7 @@ html .ui-alt-icon .ui-radio-off:after {
     background-color: #000;
 }
 .ui-icon-loading {
-    background: url(images/ajax-loader.gif);
+    /* background: url(images/ajax-loader.gif); */
     background-size: 2.875em 2.875em;
 }
 .ui-bar-a,

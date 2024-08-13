@@ -73,7 +73,8 @@ class View
                 foreach ($view as $view_k => $view_v) {
                         foreach ($view_v as $k => $v) {
                                 if (isset(Request::param()["mediaType"]) and Request::param()["mediaType"] == $v[0]) {
-                                        self::Start($v[0],$v[1],$v[2]);
+                                        var_dump("asd");
+                                        // self::Start($v[0],$v[1],$v[2]);
                                 }
                         }
                 }

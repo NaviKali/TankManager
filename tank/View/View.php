@@ -72,8 +72,8 @@ class View
                         self::Start($view[0][0][0], $view[0][0][1], $view[0][0][2]);
                 foreach ($view as $view_k => $view_v) {
                         foreach ($view_v as $k => $v) {
-                                if (isset(Request::param()["mediaType"]) and Request::param()["mediaType"] == $v[0]) {
-                                        self::Start($v[0],$v[1],$v[2]);
+                                if (isset(Request::param()["mediaType"]) and str_replace("_", "/", Request::param()["mediaType"]) == $v[0]) {
+                                        self::Start($v[0], $v[1], $v[2]);
                                 }
                         }
                 }

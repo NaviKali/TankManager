@@ -30,7 +30,7 @@ class Login extends BaseController
         BathVerParams("POST", VerificationInclude('Login')["registration"]);
         $params = $request->postparam();
         (new ModelLogin())->Modelcreate([$params['login_user'], $params['login_password']]);
-        return $this->throwSuccess("添加成功！");
+        return $this->throwSuccess("注册成功！");
     }
     /**
      * 免密登录

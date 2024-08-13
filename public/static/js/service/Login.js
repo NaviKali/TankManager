@@ -8,8 +8,12 @@ async function ILogin(url, param) {
             sessionStorage.setItem("token", res.data.token);
             //*存储登录Guid
             localStorage.setItem("login_guid", res.data.login_guid);
+            /**
+             * 存储页面
+             */
+            localStorage.setItem("page", "Home");
             setTimeout(() => {
-                To("HomePage")
+                To("indexPage")
             }, 1000);
         }
     });
@@ -26,3 +30,15 @@ async function IFreePasswordLogin(url, param) {
         }
     });
 }
+/**
+ * 注册账号
+ */
+async function IRegistrationAccount(url, param) {
+    DefineRequest("POST", url, param, function (res) {
+        console.log(res);
+
+    });
+}
+/**
+ * 填写表格
+ */
