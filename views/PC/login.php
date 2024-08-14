@@ -134,6 +134,14 @@
                     <input type="reg_password" class="form-control" id="reg_password" placeholder="请输入注册密码"
                         name="reg_password">
                 </div>
+                <div class="mb-3">
+                    <label for="reg_password" class="form-label">账号类型</label>
+                    <select class="form-select" id="reg_type" name="reg_type">
+                        @foreach($TK["login_type_list"] as $k => $v){
+                        echo '<option value="'.$v.'">'.$k.'</option>';
+                        }foreach@
+                    </select>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#UserWriteTable"
@@ -142,35 +150,6 @@
         </div>
     </div>
 </div>
-<!-- 用户填写表格 -->
-<!-- <div class="modal fade" id="UserWriteTable">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">用户填写表格</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3 mt-3">
-                    <label for="user_name" class="form-label">用户姓名</label>
-                    <input type="user_name" class="form-control" id="user_name" placeholder="请输入用户姓名" name="user_name">
-                </div>
-                <div class="mb-3">
-                    <label for="user_phone" class="form-label">用户手机号</label>
-                    <input type="user_phone" class="form-control" id="user_phone" placeholder="请输入用户手机号"
-                        name="user_phone">
-                </div>
-                <select class="form-select" id="user_sex">
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="Over()">完成</button>
-            </div>
-        </div>
-    </div>
-</div> -->
 <!-- 后台详情 -->
 <div class="modal fade" id="BackstageItem">
     <div class="modal-dialog modal-lg">
@@ -216,7 +195,7 @@
     * 注册账号并且完成填写表格
     */
     function Registration() {
-        IRegistrationAccount("#request#Login/RegistrationAccount", { login_user: document.getElementById("reg_user").value, login_password: document.getElementById("reg_password").value })
+        IRegistrationAccount("#request#Login/RegistrationAccount", { login_user: document.getElementById("reg_user").value, login_password: document.getElementById("reg_password").value, login_type: document.getElementById('reg_type').value.trim() })
     }
 </script>
 [/Start]

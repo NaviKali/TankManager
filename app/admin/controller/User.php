@@ -16,9 +16,9 @@ class User extends BaseController
      * @api User/VerUserWirteUserTable
      * @see @param app\verification\User.php["ver"]
      * @param Request $request
-     * @return array
+     * @return mixed
      */
-    public function VerUserWirteUserTable(Request $request): array
+    public function VerUserWirteUserTable(Request $request): mixed
     {
         BathVerParams("POST", VerificationInclude("User")['ver']);
         $params = $request->postparam();
@@ -34,9 +34,9 @@ class User extends BaseController
      * @api User/NewUserWriteUserTable
      * @see @param app\verification\User.php["new"]
      * @param Request $request
-     * @return array
+     * @return mixed
      */
-    public function NewUserWriteUserTable(Request $request): array
+    public function NewUserWriteUserTable(Request $request): mixed
     {
         BathVerParams("POST", VerificationInclude("User")['new']);
         $params = $request->postparam();

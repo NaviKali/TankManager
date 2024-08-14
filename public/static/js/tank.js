@@ -4,7 +4,20 @@ const verTokenError = 502;
 
 
 
-
+/**
+ * 创建一条打开模态框快捷按钮
+ * @param id dialog模态框id名称 必填
+ */
+function CreateDialogButton(id) {
+    let btn = document.createElement("button")
+    btn.setAttribute("data-bs-toggle", "modal")
+    btn.setAttribute("data-bs-target", `#${id}`)
+    document.body.appendChild(btn)
+    btn.click();
+    setTimeout(() => {
+        btn.remove();
+    }, 100);
+}
 
 
 /**
@@ -129,7 +142,7 @@ function DefineRequest(type, url, param, response) {
             $.ajax({
                 headers: {
                     "Content-Type": "application/json",
-                    "token": sessionStorage.getItem("token"),
+                    "Token": sessionStorage.getItem("token"),
                 },
                 url: url,
                 type: type,
@@ -166,4 +179,44 @@ function VerTokenErrorHandle(res) {
         localStorage.clear();
         To("LoginPage");
     }
+}
+
+/**
+ * 定义面包屑
+ */
+function DefineCrumbs(prefix = '') {
+    document.getElementById("crumbs").innerHTML = prefix + '/' + localStorage.getItem("pageName")
+}
+
+/**
+ * 文件上传
+ * !注意，需要先引用upload接口
+ * @param id 文件上传id 必填
+ */
+function Upload(id, src) {
+    document.getElementById(id).addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        let filename = file.name.split(".")[0].trim();
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const contents = e.target.result;
+            let before = contents.split(",")[0];
+            let data = contents.split(",")[1];
+            let type = before.replace("data:", "").replace(";base64", "").split("/")[1].trim();
+
+            IUpload(`${src}Upload/Upload`,{
+                upload_name:filename,
+                upload_data:data,
+                upload_type:type
+            });
+        };
+        reader.onerror = function (e) {
+            console.error("读取文件时发生错误:", e.target.error);
+        };
+        reader.readAsDataURL(file); // 读取文本文件
+
+    });
 }

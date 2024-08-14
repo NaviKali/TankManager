@@ -18,11 +18,13 @@ class Login extends \tank\MD\MD
         public static $field = [
                 'login_user' => self::SHOW,
                 'login_password' => self::SHOW,
+                'login_type' => self::SHOW,
         ];
         /**写入字段 */
         public static $writefield = [
                 'login_user' => "账号",
                 'login_password' => "密码",
+                'login_type' => "账号类型",
         ];
         /**开启软删除 */
         public static $OpenSoftDelete = true;

@@ -39,6 +39,3 @@ async function IRegistrationAccount(url, param) {
 
     });
 }
-/**
- * 填写表格
- */

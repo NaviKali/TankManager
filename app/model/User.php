@@ -18,6 +18,9 @@ class User extends \tank\MD\MD
         /**显示字段 */
         public static $field = [
                 'user_name' => self::SHOW,
+                'user_sex' => self::SHOW,
+                'user_phone' => self::SHOW,
+                'user_avatar' => self::SHOW,
         ];
         /**写入字段 */
         public static $writefield = [
@@ -25,6 +28,7 @@ class User extends \tank\MD\MD
                 'user_name' => "用户姓名",
                 'user_sex' => "用户性别",
                 'user_phone' => "用户手机号",
+                'user_avatar' => "用户头像",
         ];
         /**开启软删除 */
         public static $OpenSoftDelete = true;

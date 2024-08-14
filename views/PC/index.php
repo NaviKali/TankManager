@@ -18,7 +18,6 @@
     }
 
     .main-body {
-        margin-top: 50px;
         display: flex;
         justify-content: left;
         align-items: top;
@@ -28,11 +27,15 @@
     .main-body-left {
         background-color: var(--theme-color);
         height: 100%;
-        width: 180px;
+        width: 10%;
         border-radius: 0px 10px 0px 0px;
         overflow: hidden;
     }
 
+    .main-body-right {
+        height: 100%;
+        width: 90%;
+    }
 
     .menu-item {
         height: 65px;
@@ -81,7 +84,11 @@
 <div class="main">
     <!-- 顶部 -->
     <div class="main-top">
-        <iframe src="#iframe#Component/top.php" frameborder="0" style="height:50px"></iframe>
+        $(
+        require_once '../../config/Base.php';
+        use function tank\getViewUrl;
+        self::Start("Component/top",[],[]);
+        )$
     </div>
     <!-- Body -->
     <div class="main-body">
@@ -129,23 +136,81 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+<!-- 用户填写表格 -->
+<div class="modal fade" id="UserWriteTable">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">用户填写表格</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 mt-3">
+                    <label for="user_name" class="form-label">用户姓名</label>
+                    <input type="user_name" class="form-control" id="user_name" placeholder="请输入用户姓名" name="user_name">
+                </div>
+                <div class="mb-3">
+                    <label for="user_phone" class="form-label">用户手机号</label>
+                    <input type="user_phone" class="form-control" id="user_phone" placeholder="请输入用户手机号"
+                        name="user_phone">
+                </div>
+                <div class="mb-3">
+                    <label for="user_phone" class="form-label">用户性别</label>
+                    <select class="form-select" id="user_sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="user_phone" class="form-label">文件上传</label>
+                    <div class="T-Upload">
+                        <input id="user_avatar" class="T-Input-Upload" type="file" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="Over()">完成</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="#service#Upload.js"></script>
+<script src="#service#User.js"></script>
 <script src="#js#bootstrap.bundle.min.js"></script>
 <script src="#js#jquery.min.js"></script>
 <script src="#js#tank.js"></script>
-
-
 <script>
+    document.body.onload = function () {
+        CreateLoadingHTML("#iframe#");
+        MenuClick()
+        MenuHoverStyleChange()
+        StartView()
+        UserWriteTable()
+        CreateDialogButton("UserWriteTable");
+        Upload("user_avatar","#request#")
+    }
     document.body.onpageshow = function () {
-        // CreateLoadingHTML("#iframe#");
         setTimeout(() => {
             ClonseLoadingHTML();
         }, 2000);
     }
-    document.body.onload = function () {
-        MenuClick()
-        MenuHoverStyleChange()
-        StartView()
-
+    /**
+     * 用户填表操作流程
+     */
+    function UserWriteTable()
+    {
+        IVerUserWirteUserTable("#request#User/VerUserWirteUserTable",{login_guid:localStorage.getItem("login_guid")})
     }
 
     /**
@@ -173,6 +238,7 @@
                     menus[i].classList = menus[i].className + " action";
 
                     localStorage.setItem("page", menus[i].getAttribute("to"));
+                    localStorage.setItem("pageName", menus[i].querySelector("p").textContent);
                 }
                 /**
                  * 多级菜单

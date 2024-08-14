@@ -78,6 +78,8 @@ class Operate
                                 return;
                 }
                 $token = Request::headers('Token');
+                var_dump($token);
+                die;
                 $find = (new MG('token'))->comment('Token验证.')->where(['token_value' => $token])->select();
                 if (!$find) {
                         Error("登录超时!", function: "Token验证");

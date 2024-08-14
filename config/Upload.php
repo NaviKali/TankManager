@@ -20,6 +20,7 @@ return [
         "disk" => "public/upload",
         /**文件后缀支持类型 */
         "fileSuffixSupportType" => [
+                "image/png",
                 "txt",
                 "pdf",
                 "png",

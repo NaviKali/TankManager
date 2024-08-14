@@ -22,14 +22,14 @@ class Login extends BaseController
      * @api Login/RegistrationAccount
      * @see @param app\verification\Login.php["registration"]
      * @param Request $request
-     * @return array
+     * @return mixed
      * @date 2024-08-10
      */
-    public function RegistrationAccount(Request $request): array
+    public function RegistrationAccount(Request $request): mixed
     {
         BathVerParams("POST", VerificationInclude('Login')["registration"]);
         $params = $request->postparam();
-        (new ModelLogin())->Modelcreate([$params['login_user'], $params['login_password']]);
+        (new ModelLogin())->Modelcreate([$params['login_user'], $params['login_password'], $params["login_type"]]);
         return $this->throwSuccess("注册成功！");
     }
     /**

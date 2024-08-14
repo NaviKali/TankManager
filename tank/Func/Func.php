@@ -169,28 +169,27 @@ class Func
                 }
 
                 //?验证账号密码是否正确
-                $findAccount = (new MG("login"))->where($con)->select();
+                $findAccount = (new MG("login"))->where($con)->Once();
                 if (!$findAccount)
                         return Error("账号密码错误！");
-                $findAccount = BaseController::Join($findAccount, 'user', 'login_guid')[0];
 
                 //?验证Token是否存在
-                $findToken = (new MG("token"))->where(["by_guid" => $findAccount->user_guid])->Once();
+                $findToken = (new MG("token"))->where(["by_guid" => $findAccount["login_guid"]])->Once();
                 if (!$findToken) {
                         $exportTime = new \DateTime(); // 获取当前时间
                         $exportTime->modify('+2 day'); // 添加一天
                         $exportTime = $exportTime->format('y.m.d-H.i:s'); // 转换为时间格式
-                        (new ModelToken())->Modelcreate([Operate::MakeToken(), $findAccount->user_guid, 1, $exportTime]);
+                        (new ModelToken())->Modelcreate([Operate::MakeToken(), $findAccount["login_guid"], 1, $exportTime]);
                 }
 
                 //?如果Token存在
                 //!刷掉Token，即异地登录 | 冲突登录
-                (new MG('token'))->where(["by_guid" => $findAccount->user_guid])->update([
+                (new MG('token'))->where(["by_guid" => $findAccount["login_guid"]])->update([
                         'token_value' => Operate::MakeToken()
                 ]);
 
                 //?判断是否要求获取Token
-                $token = $isGetToken ? (new MG("token"))->where(["by_guid" => $findAccount->user_guid])->Once()['token_value'] : null;
+                $token = $isGetToken ? (new MG("token"))->where(["by_guid" => $findAccount["login_guid"]])->Once()['token_value'] : null;
                 // 查找单条数据 
                 $find = (new MG($model))->where($con)->Once();
                 $find["token"] = $token; //*给予Token  值/null

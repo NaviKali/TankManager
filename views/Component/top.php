@@ -1,16 +1,17 @@
-<?php
+$(
 require_once '../../config/Base.php';
 use app\void\index as VoidIndex;
-?>
+)$
 <div class="top">
     <!-- 标题 -->
-    <div class="title"><?php echo (new VoidIndex)->getTitle();  ?></div>
+    <div class="title">$(echo (new VoidIndex)->getTitle();)$</div>
     <!-- 设置和头像 -->
-     <div class="setting">
-        
-     </div>
+    <div class="setting">
+        <div class="avatar"><img src="#img#wallpaper1723444488322.jpg" alt=""></div>
+        <div class="caozuo" onclick="toSetting()"><img src="#img#caozuo/setting.png" alt="">
+        </div>
+    </div>
 </div>
-<link rel="stylesheet" href="../../public/static/css/tank.css">
 <style>
     body {
         margin: 0px;
@@ -25,15 +26,56 @@ use app\void\index as VoidIndex;
         align-items: center;
         align-content: center;
     }
-    .title{
+
+    .title {
         color: white;
         font-size: 20px;
         font-weight: bold;
         letter-spacing: 4px;
     }
+
+    .setting {
+        height: 100%;
+        width: 100px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+    }
+
+    .avatar {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+
+    .avatar img {
+        border-radius: 50px;
+        width: 70%;
+        height: 70%;
+    }
+
+    .caozuo {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        align-content: center;
+    }
+
+    .caozuo img {
+        border-radius: 50px;
+        width: 70%;
+        height: 70%;
+    }
 </style>
 <script>
-
-
-
+    /**
+     * 跳转到设置页
+     */
+    function toSetting() {
+        To("settingPage");
+    }
 </script>
