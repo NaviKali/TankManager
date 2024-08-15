@@ -5,6 +5,8 @@ async function IVerUserWirteUserTable(url, param) {
     DefineRequest("POST", url, param, function (res) {
         if (res.code == 404) {
             CreateDialogButton("UserWriteTable");
+        }else{
+            To("indexPage");
         }
     });
 }
@@ -13,6 +15,10 @@ async function IVerUserWirteUserTable(url, param) {
  */
 async function INewUserWriteUserTable(url, param) {
     DefineRequest("POST", url, param, function (res) {
-        console.log(res);
+        if (isRequestSuccess(res)) {
+            setTimeout(() => {
+                To("indexPage");
+            }, 1000);
+        }
     });
 }

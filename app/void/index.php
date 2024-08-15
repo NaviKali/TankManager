@@ -4,6 +4,7 @@ namespace app\void;
 
 use tank\BaseController;
 use function tank\getAPPJSON;
+use app\model\User as ModelUser;
 
 
 class index extends BaseController
@@ -11,12 +12,14 @@ class index extends BaseController
 
     /**
      * 获取标题名称
-     * @string
+     * @access public
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
-        $appjson = (array)getAPPJSON();
+        $appjson = (array) getAPPJSON();
         header("Content-Type:text/html");
         return $appjson["Title"];
     }
+
 }

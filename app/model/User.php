@@ -21,6 +21,7 @@ class User extends \tank\MD\MD
                 'user_sex' => self::SHOW,
                 'user_phone' => self::SHOW,
                 'user_avatar' => self::SHOW,
+                'user_create_time' => self::SHOW,
         ];
         /**写入字段 */
         public static $writefield = [

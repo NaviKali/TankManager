@@ -183,18 +183,26 @@ function VerTokenErrorHandle(res) {
 
 /**
  * 定义面包屑
+ * @param prefix 前缀 选填 默认为 ''
  */
 function DefineCrumbs(prefix = '') {
     document.getElementById("crumbs").innerHTML = prefix + '/' + localStorage.getItem("pageName")
 }
-
+/**
+ * 获取文件上传图片file属性
+ * @param id 文件上传id 必填
+ */
+function getUploadImageAttrOfFile(id) {
+    return document.getElementById(id).querySelector("img").getAttribute("file");
+}
 /**
  * 文件上传
  * !注意，需要先引用upload接口
  * @param id 文件上传id 必填
+ * @param src 请求路径 必填 #request#
  */
 function Upload(id, src) {
-    document.getElementById(id).addEventListener("change", function (e) {
+    document.getElementById(id).querySelector("input").addEventListener("change", function (e) {
         const file = e.target.files[0];
         if (!file) {
             return;
@@ -207,11 +215,16 @@ function Upload(id, src) {
             let data = contents.split(",")[1];
             let type = before.replace("data:", "").replace(";base64", "").split("/")[1].trim();
 
-            IUpload(`${src}Upload/Upload`,{
-                upload_name:filename,
-                upload_data:data,
-                upload_type:type
-            });
+
+            /**
+             * 调用文件上传接口
+             * @interface
+             */
+            IUpload(`${src}Upload/Upload`, {
+                upload_name: filename,
+                upload_data: data,
+                upload_type: type
+            }, id);
         };
         reader.onerror = function (e) {
             console.error("读取文件时发生错误:", e.target.error);
@@ -219,4 +232,14 @@ function Upload(id, src) {
         reader.readAsDataURL(file); // 读取文本文件
 
     });
+}
+
+/**
+ * 文件上传图片取消
+ */
+let uploadImage = document.getElementsByClassName("T-Upload-Image")
+for (let i = 0; i < uploadImage.length; i++) {
+    uploadImage[i].ondblclick = function () {
+        uploadImage[i].style.display = "none"
+    }
 }

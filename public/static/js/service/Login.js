@@ -13,7 +13,7 @@ async function ILogin(url, param) {
              */
             localStorage.setItem("page", "Home");
             setTimeout(() => {
-                To("indexPage")
+                To("userTablePage")
             }, 1000);
         }
     });

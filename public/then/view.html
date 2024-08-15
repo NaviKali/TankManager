@@ -1,81 +1,165 @@
-<?php	
-require_once '../../config/Base.php';
-use app\void\index as VoidIndex;
-	?>
-<div class="top">
-    <!-- 标题 -->
-    <div class="title"><?php	echo (new VoidIndex)->getTitle();	?></div>
-    <!-- 设置和头像 -->
-    <div class="setting">
-        <div class="avatar"><img src="http://localhost:8080/public/static/image/wallpaper1723444488322.jpg" alt=""></div>
-        <div class="caozuo" onclick="toSetting()"><img src="http://localhost:8080/public/static/image/caozuo/setting.png" alt="">
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>[DOCUMENT]</title>
+                
+        </head>
+        <body>
+<div class="MAIN" ver="Home">
+    <!-- 顶部信息卡 -->
+    <div class="Home-InfoCard">
+        <div class="card">
+            <div class="Home-Card-Title">
+                <p>欢迎回来！</p>
+            </div>
+            <div class="card-body">
+                <div class="Home-avatar_and_weclome">
+                    <img class="Home-avatar" src="<?php	echo 'http://localhost:8080/public/upload/'.$TK['user_info']['user_avatar'];	?>"></img>
+                    <p>您好，<span style="color:var(--theme-color)"><?php	echo $TK["user_info"]["user_name"];	?></span>
+                        <?php	
+                        echo $TK["user_info"]["user_sex"] == "男" ? "先生"
+                        : ($TK["user_info"]["user_sex"] == "女" ? "女士"
+                        : "其他") 	?></p>
+                </div>
+                <div class="Home-ShowTime">
+                    <p>当前时间：<?php	echo date("Y.m.d-h:i:s");	?></p>
+                    <p>注册时间：<?php	echo $TK["user_info"]["user_create_time"]	?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加 - 操作 | 汇报 -->
+    <div class="Home-Body-Block">
+        <div class="Home-Body-Block-Left">
+            <div class="Home-Body-Block-Left-Between">
+                <!-- 闹钟节点提醒 -->
+                <div class="card" style="height:48%;width:98%">
+                    <div class="Home-Card-Title">
+                        <p>闹钟节点提醒</p>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+                <!-- 近期添加账号数量以及类型总合 -->
+                <div class="card" style="height:48%;width:98%">
+                    <div class="Home-Card-Title">
+                        <p>近期账号添加</p>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Home-Body-Block-Right">
+            <!-- 实用功能 -->
+            <div class="card" style="height:100%">
+                <div class="Home-Card-Title">
+                    <p>实用功能</p>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="http://localhost:8080/public/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:8080/public/static/css/tank.css">
 <style>
-    body {
-        margin: 0px;
+    /* CSS */
+    .Home-Body-Block-Left-Between {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
     }
 
-    .top {
-        height: 50px;
-        background-color: var(--theme-background);
+    .Home-Body-Block-Left {
+        width: 50%;
+    }
+
+    .Home-Body-Block-Right {
+        width: 50%;
+    }
+
+    .Home-Body-Block {
         display: flex;
-        padding-left: 20px;
         justify-content: space-between;
+        align-content: center;
+        height: 700px;
+        width: 95%;
+        margin: 25px auto;
+    }
+
+    .Home-Card-Title {
+        border-bottom: 2px solid var(--theme-color);
+        width: 98%;
+        margin: auto;
+    }
+
+    .Home-Card-Title p {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .Home-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+
+    .Home-ShowTime {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: right;
+        padding-right: 25px;
+        align-items: center;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .Home-InfoCard {
+        width: 95%;
+        margin: auto;
+    }
+
+    .Home-avatar_and_weclome {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        padding-left: 25px;
         align-items: center;
         align-content: center;
     }
 
-    .title {
-        color: white;
-        font-size: 20px;
+    .Home-avatar_and_weclome p {
+        font-family: "黑体";
+        position: relative;
+        left: 20px;
+        font-size: 21px;
         font-weight: bold;
-        letter-spacing: 4px;
+        letter-spacing: 2px;
     }
 
-    .setting {
-        height: 100%;
-        width: 100px;
+    .card-body {
         display: flex;
         justify-content: space-around;
         align-items: center;
         align-content: center;
     }
-
-    .avatar {
-        height: 100%;
-        width: 50%;
-        display: flex;
-        align-items: center;
-        align-content: center;
-    }
-
-    .avatar img {
-        border-radius: 50px;
-        width: 70%;
-        height: 70%;
-    }
-
-    .caozuo {
-        height: 100%;
-        width: 50%;
-        display: flex;
-        align-items: center;
-        align-content: center;
-    }
-
-    .caozuo img {
-        border-radius: 50px;
-        width: 70%;
-        height: 70%;
-    }
 </style>
+<script src="http://localhost:8080/public/static/js/bootstrap.bundle.min.js"></script>
+<script src="http://localhost:8080/public/static/js/jquery.min.js"></script>
+<script src="http://localhost:8080/public/static/js/tank.js"></script>
 <script>
-    /**
-     * 跳转到设置页
-     */
-    function toSetting() {
-        To("settingPage");
-    }
+
 </script>
+</body>
+
+        </html>

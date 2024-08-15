@@ -40,10 +40,7 @@ class User extends BaseController
     {
         BathVerParams("POST", VerificationInclude("User")['new']);
         $params = $request->postparam();
-        //*转字典
-        $params["user_sex"] = $this->useDictionary($params["user_sex"]);
-
-        (new ModelUser())->Modelcreate([$params['login_guid'],$params['user_name'],$params['user_sex'],$params['user_phone']]);
+        (new ModelUser())->Modelcreate([$params['login_guid'], $params['user_name'], $params['user_sex'], $params['user_phone'], $params["user_avatar"]]);
         return $this->throwSuccess("填写成功！");
     }
 }

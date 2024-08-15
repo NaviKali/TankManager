@@ -5,9 +5,8 @@ use app\void\index as VoidIndex;
 <div class="top">
     <!-- 标题 -->
     <div class="title">$(echo (new VoidIndex)->getTitle();)$</div>
-    <!-- 设置和头像 -->
+    <!-- 设置 -->
     <div class="setting">
-        <div class="avatar"><img src="#img#wallpaper1723444488322.jpg" alt=""></div>
         <div class="caozuo" onclick="toSetting()"><img src="#img#caozuo/setting.png" alt="">
         </div>
     </div>

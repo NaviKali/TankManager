@@ -85,8 +85,6 @@
     <!-- 顶部 -->
     <div class="main-top">
         $(
-        require_once '../../config/Base.php';
-        use function tank\getViewUrl;
         self::Start("Component/top",[],[]);
         )$
     </div>
@@ -130,60 +128,19 @@
             </div>
         </div>
         <div class="main-body-right">
-            <!-- 渲染 -->
-            <iframe id="View" src="" style="position:unset"></iframe>
+            $(
+            use function tank\getViewUrl;
+            //*获取index文件夹所有视图页面引入
+            foreach(glob(getViewUrl()."/PC/index/*.php") as $k => $v)
+            {
+            self::Start(str_replace(".php","",str_replace(getViewUrl()."/","",$v)),$TK,[]);
+            }
+            )$
         </div>
     </div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-<!-- 用户填写表格 -->
-<div class="modal fade" id="UserWriteTable">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">用户填写表格</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3 mt-3">
-                    <label for="user_name" class="form-label">用户姓名</label>
-                    <input type="user_name" class="form-control" id="user_name" placeholder="请输入用户姓名" name="user_name">
-                </div>
-                <div class="mb-3">
-                    <label for="user_phone" class="form-label">用户手机号</label>
-                    <input type="user_phone" class="form-control" id="user_phone" placeholder="请输入用户手机号"
-                        name="user_phone">
-                </div>
-                <div class="mb-3">
-                    <label for="user_phone" class="form-label">用户性别</label>
-                    <select class="form-select" id="user_sex">
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="user_phone" class="form-label">文件上传</label>
-                    <div class="T-Upload">
-                        <input id="user_avatar" class="T-Input-Upload" type="file" value="">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="Over()">完成</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="#service#Upload.js"></script>
 <script src="#service#User.js"></script>
@@ -196,9 +153,8 @@
         MenuClick()
         MenuHoverStyleChange()
         StartView()
-        UserWriteTable()
-        CreateDialogButton("UserWriteTable");
-        Upload("user_avatar","#request#")
+
+        Upload("user_avatar", "#request#")
     }
     document.body.onpageshow = function () {
         setTimeout(() => {
@@ -206,18 +162,30 @@
         }, 2000);
     }
     /**
-     * 用户填表操作流程
+     * 填写完用户信息表格
      */
-    function UserWriteTable()
-    {
-        IVerUserWirteUserTable("#request#User/VerUserWirteUserTable",{login_guid:localStorage.getItem("login_guid")})
+    function Over() {
+        INewUserWriteUserTable("#request#User/NewUserWriteUserTable", {
+            login_guid: localStorage.getItem("login_guid"),
+            user_name: document.getElementById("user_name").value,
+            user_sex: document.getElementById('user_sex').value.trim(),
+            user_phone: document.getElementById("user_phone").value,
+            user_avatar: getUploadImageAttrOfFile("user_avatar"),
+        })
     }
 
     /**
      * 渲染页面
      */
     function StartView() {
-        document.getElementById("View").src = `#iframe#PC/${localStorage.getItem("page")}.php`;
+        let mains = document.getElementsByClassName("MAIN")
+        for (let i = 0; i < mains.length; i++) {
+            if (mains[i].getAttribute("ver") == localStorage.getItem("page")) {
+                mains[i].style.display = "block"
+            } else {
+                mains[i].style.display = "none"
+            }
+        }
     }
 
     /**
@@ -239,6 +207,9 @@
 
                     localStorage.setItem("page", menus[i].getAttribute("to"));
                     localStorage.setItem("pageName", menus[i].querySelector("p").textContent);
+
+                    //*重新渲染视图
+                    StartView()
                 }
                 /**
                  * 多级菜单
@@ -259,7 +230,6 @@
                         menus[i].getElementsByClassName("menu-item-children")[0].style.height = childrensonmenus.length * 65 + "px"
                     }
                 }
-                StartView()
             }
         }
     }

@@ -1,4 +1,7 @@
 [Start]
+$(
+    header("Content-Type:text/html");
+)$
 <link rel="stylesheet" href="#css#bootstrap.min.css">
 <link rel="stylesheet" href="#css#tank.css">
 <style>

@@ -57,12 +57,12 @@ class Login extends BaseController
      * @author liulei
      * @api Login/AccountLogin
      * @param Request $request look down
-     * @return mixed
+     * @return void
      * @date 2024-08-10
      */
-    public function AccountLogin(Request $request): mixed
+    public function AccountLogin(Request $request):void
     {
-        return Func::SingleVerCallFunction("LOGIN", __FUNCTION__, function () {
+        Func::SingleVerCallFunction("LOGIN", __FUNCTION__, function () {
         }, [
             'login_user',
             'login_password',

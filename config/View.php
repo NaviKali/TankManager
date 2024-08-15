@@ -20,6 +20,7 @@ return [
         "#css#" => "http://localhost:8080/public/static/css/",
         "#js#" => "http://localhost:8080/public/static/js/",
         "#img#" => "http://localhost:8080/public/static/image/",
+        "#upload#" => "http://localhost:8080/public/upload/",
         "#iframe#" => "http://localhost:8080/views/",
         "#request#" => "http://localhost:8080/public/app/admin.php/",
         "#service#" => "http://localhost:8080/public/static/js/service/",

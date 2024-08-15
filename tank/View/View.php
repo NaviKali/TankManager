@@ -43,8 +43,6 @@ class View
         {
                 self::$ViewConfig = require (getRoot() . "/config/view.php");
                 self::$HeaderAttr = $attr;
-                //*切换类型
-                header("Content-Type:text/html");
                 $url = getRoot() . "views/";
                 self::$view = $view;
                 self::$viewPage = $url . $view . ".php";

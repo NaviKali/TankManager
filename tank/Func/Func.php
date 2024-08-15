@@ -195,6 +195,10 @@ class Func
                 $find["token"] = $token; //*给予Token  值/null
                 if (!$find)
                         return Error("登录失败!");
+                /** 
+                 * 存储登录信息
+                 */
+                $_SESSION["Login"] = $find;
                 return Success("登录成功!", $find);
         }
 

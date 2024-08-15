@@ -8,7 +8,7 @@ use tank\Error\httpError;
  * @author LL
  */
 
-include ('../../config/Database.php');
+include('../../config/Database.php');
 use config\SQL as SQL;
 use MongoDB\Driver\Manager as Manager;
 use MongoDB\Driver\Exception as DriverException;
@@ -485,7 +485,7 @@ class MG implements IMG
         private function AutoWriteGuid(array $data)
         {
                 //*获取Guid后转码
-                $GuidValue = Tool::AutomaticID($data[$this::$Guid[1]]);
+                $GuidValue = Tool::AutomaticID(date("Y-m-d-H.i:s") . $data[$this::$Guid[1]]);
                 $data[$this::$Guid[0]] = $GuidValue; //*添加Guid字段
                 return $data;
         }

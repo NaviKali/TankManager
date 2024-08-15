@@ -18,8 +18,5 @@ class sessionmiddleware
         $session->CreateSession("SessionParams", $params); //*存储请求接口参数
         $session->CreateSession("SessionUserIP", Tool::GetIP()); //*当前用户IP地址
         $session->CreateSession("SessionUserNetWork",net_get_interfaces());//*当前用户网络信息
-
-        session_encode();
-        session_destroy();
     }
 }
